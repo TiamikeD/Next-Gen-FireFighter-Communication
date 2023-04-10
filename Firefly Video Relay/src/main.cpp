@@ -2,8 +2,8 @@
 #include "WiFi.h"
 #include "AsyncUDP.h"
 
-const char * ssid = "Castillo";
-const char * password = "yfkhf6rjpa";
+const char * ssid = "********";
+const char * password = "*********";
 
 #define MAX_PACKET_SIZE 1472
 
