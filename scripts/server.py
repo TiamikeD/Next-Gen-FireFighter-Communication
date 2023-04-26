@@ -20,10 +20,10 @@ encode_param = [int(cv2.IMWRITE_JPEG_QUALITY),35]
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
 # Define the maximum packet size
-MAX_PACKET_SIZE = 1472
+MAX_PACKET_SIZE = 1436
 
 while cap.isOpened():
-    time.sleep(1)
+    #time.sleep(1)
     # Capture frame-by-frame
     ret, frame = cap.read()
 

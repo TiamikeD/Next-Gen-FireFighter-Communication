@@ -4,6 +4,7 @@ import numpy as np
 import sys
 from threading import Thread
 import pickle
+import time
 
 
 #if len(sys.argv) != 2:
@@ -13,11 +14,11 @@ import pickle
 
 #UDP_IP = sys.argv[1]
 UDP_IP = socket.gethostbyname(socket.gethostname())
-                            
 
 class UdpVideoCapture():
     def __init__(self, udp_ip, udp_port):
         #super().__init__()
+        self.prev_time = 0                            
         self.udp_ip = udp_ip
         self.udp_port = udp_port
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -37,8 +38,8 @@ class UdpVideoCapture():
 
  #           print(1)
             # Decode the data into a numpy array
-            print(data)
-            print(len(data))
+#            print(data)
+#            print(len(data))
             chunk = np.frombuffer(data, dtype=np.uint8)
             #print(chunk)
             # Append the chunk to the list of frame chunks
@@ -69,7 +70,9 @@ class UdpVideoCapture():
     def print_frame(self, ret, frame):
         if ret:
             try:
-                print(frame)
+                print(time.time() - self.prev_time)
+                self.prev_time = time.time()
+                #print(frame)
                 cv2.imshow('frame', frame)
             except Exception as ex:
                 print(ex)
